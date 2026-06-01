@@ -1,0 +1,11 @@
+# MediAssist AI — requirements.txt
+# Install with: pip install -r requirements.txt
+
+streamlit>=1.32.0
+groq>=0.5.0
+requests>=2.31.0
+beautifulsoup4>=4.12.0       # bs4 — web scraping
+lxml>=5.1.0                  # faster HTML parser for BeautifulSoup
+faiss-cpu>=1.7.4             # vector store (use faiss-gpu if on GPU)
+sentence-transformers>=2.6.0 # all-MiniLM-L6-v2 embeddings
+numpy>=1.26.0
