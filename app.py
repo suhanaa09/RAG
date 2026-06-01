@@ -184,38 +184,8 @@ with st.sidebar:
                 groq_api_key=groq_key,
                 tavily_api_key=tavily_key,
             )
-        if tavily_key and st.session_state.rag:
-            st.session_state.rag.set_tavily_key(tavily_key)
-
-        col1, col2 = st.columns(2)
-        col1.markdown('<span class="badge-success">✓ Groq</span>', unsafe_allow_html=True)
-        if tavily_key:
-            col2.markdown('<span class="badge-web">✓ Web</span>', unsafe_allow_html=True)
-        else:
-            col2.markdown('<span class="badge-warn">⚠ No Web</span>', unsafe_allow_html=True)
-    else:
-        st.info("⚠️ Add your Groq API key to start")
-
-    st.markdown(
-        "<small style='color:#64748b'>PubMed search is always active — no key needed.<br>"
-        "Tavily free tier: 1,000 searches/month.</small>",
-        unsafe_allow_html=True,
-    )
-
-    st.divider()
-
-    # ── RAG Tools status ──────────────────────────────────────────────────────
-    st.markdown("### 🛠️ Active RAG Tools")
-    st.markdown('<span class="badge-success">✓ FAISS+BM25+RRF</span>', unsafe_allow_html=True)
-    st.markdown(" ")
-    st.markdown('<span class="badge-success">✓ Built-in Medical KB</span>', unsafe_allow_html=True)
-    st.markdown(" ")
-    st.markdown('<span class="badge-success">✓ BM25 Keyword Search</span>', unsafe_allow_html=True)
-    st.markdown(" ")
-    st.markdown('<span class="badge-success">✓ RRF Fusion Ranking</span>', unsafe_allow_html=True)
-    st.markdown(" ")
-    st.markdown('<span class="badge-pubmed">✓ PubMed Literature</span>', unsafe_allow_html=True)
-    st.markdown(" ")
+    
+    # ── RAG Tools status ─────────────────────────────────────────────────────
     st.markdown('<span class="badge-scraper">✓ Web Scraper Fallback</span>', unsafe_allow_html=True)
     st.markdown(" ")
     if st.session_state.rag and st.session_state.rag.live_search:
@@ -313,20 +283,9 @@ with st.sidebar:
 # ── Main chat area ────────────────────────────────────────────────────────────
 st.markdown("# 🩺 MediAssist AI")
 
-# Disclaimer
-st.markdown(
-    '<div class="disclaimer">⚠️ <b>Medical Disclaimer:</b> This AI provides general medical information only. '
-    'It is not a substitute for professional medical advice, diagnosis, or treatment. '
-    'Always consult a qualified healthcare provider for medical decisions.</div>',
-    unsafe_allow_html=True,
-)
-
 # Active tools badge row
 has_web = st.session_state.rag and st.session_state.rag.live_search
 badges = (
-    '<span class="badge-success">✓ Built-in KB</span> &nbsp; '
-    '<span class="badge-success">FAISS+BM25+RRF</span> &nbsp; '
-    '<span class="badge-pubmed">📖 PubMed Active</span> &nbsp; '
     '<span class="badge-scraper">🕷️ Scraper Fallback ON</span>'
 )
 if has_web:
